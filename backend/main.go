@@ -11,19 +11,20 @@ import (
 
 func main() {
 	// ::: Connection to the database
-	database := db.ConnectDB()
-	defer func(database *sql.DB) {
-		err := database.Close()
+	dbConnection := db.ConnectDB()
+	defer func(dbConnection *sql.DB) {
+		err := dbConnection.Close()
 		if err != nil {
 			log.Printf("Ocurrio un error: %v", err)
 		}
-	}(database)
+	}(dbConnection)
 
 	// ::: Initialize Gin router
 	router := gin.Default()
 
-	// ::: Get all novels
-	router.GET("/api/novels", handlers.GetNovelsHandler(database))
+	// ::: Routes
+	router.GET("/api/novels", handlers.GetNovelsHandler(dbConnection))
+	router.GET("/api/genres", handlers.GetGenresHandler(dbConnection))
 
 	// ::: Start the Gin server
 	router.Run(":8080")

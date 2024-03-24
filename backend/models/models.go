@@ -4,10 +4,13 @@ import "time"
 
 // LightNovel represents the LightNovels table.
 type LightNovel struct {
-	LightNovelID    int    `json:"lightNovelId"`
-	Title           string `json:"title"`
-	NumberOfVolumes int    `json:"numberOfVolumes"`
-	CoverArtURL     string `json:"coverArtUrl"`
+	LightNovelID    int      `json:"lightNovelId"`
+	Title           string   `json:"title"`
+	NumberOfVolumes int      `json:"numberOfVolumes"`
+	CoverArtURL     string   `json:"coverArtUrl"`
+	Volumes         []Volume `json:"volumes"`
+	Genres          []Genre  `json:"genres"`
+	Authors         []Author `json:"authors"`
 }
 
 // Volume represents the Volumes table.
