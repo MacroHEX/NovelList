@@ -2,12 +2,12 @@ package handlers
 
 import (
 	"backend/db"
-	"database/sql"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"net/http"
 )
 
-func GetNovelsHandler(database *sql.DB) gin.HandlerFunc {
+func GetNovelsHandler(database *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		novels, err := db.GetAllNovels(database)
 		if err != nil {
@@ -18,7 +18,7 @@ func GetNovelsHandler(database *sql.DB) gin.HandlerFunc {
 	}
 }
 
-func GetGenresHandler(database *sql.DB) gin.HandlerFunc {
+func GetGenresHandler(database *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		genres, err := db.GetAllGenres(database)
 		if err != nil {
